@@ -1,0 +1,58 @@
+<?php
+
+/**
+ * @file
+ * Install, schema and update hooks for Workflow Engine.
+ */
+
+/**
+ * Implements hook_schema().
+ *
+ * Workflow definitions are config entities. Submissions are high-volume,
+ * append-only records, so they live in a dedicated table.
+ */
+function workflow_engine_schema(): array {
+  $schema['workflow_engine_submission'] = [
+    'description' => 'Stores workflow assessment submissions.',
+    'fields' => [
+      'id' => ['type' => 'serial', 'unsigned' => TRUE, 'not null' => TRUE],
+      'workflow_id' => ['type' => 'varchar', 'length' => 128, 'not null' => TRUE],
+      'workflow_name' => ['type' => 'varchar', 'length' => 255, 'not null' => TRUE],
+      'answers' => [
+        'description' => 'JSON snapshot of questions and answers, grouped by step.',
+        'type' => 'text',
+        'size' => 'big',
+        'not null' => TRUE,
+      ],
+      'result' => ['type' => 'varchar', 'length' => 128, 'not null' => TRUE],
+      'result_level' => ['type' => 'varchar', 'length' => 16, 'not null' => TRUE, 'default' => ''],
+      'result_message' => ['type' => 'text', 'size' => 'normal', 'not null' => FALSE],
+      'created' => ['type' => 'int', 'unsigned' => TRUE, 'not null' => TRUE],
+      'uid' => ['type' => 'int', 'unsigned' => TRUE, 'not null' => TRUE, 'default' => 0],
+    ],
+    'primary key' => ['id'],
+    'indexes' => [
+      'workflow_id' => ['workflow_id'],
+      'created' => ['created'],
+    ],
+  ];
+  return $schema;
+}
+
+/**
+ * Adds result_level and result_message; removes the old JSON config object.
+ */
+function workflow_engine_update_10001(): void {
+  $schema = \Drupal::database()->schema();
+  if (!$schema->fieldExists('workflow_engine_submission', 'result_level')) {
+    $schema->addField('workflow_engine_submission', 'result_level', [
+      'type' => 'varchar', 'length' => 16, 'not null' => TRUE, 'default' => '',
+    ]);
+  }
+  if (!$schema->fieldExists('workflow_engine_submission', 'result_message')) {
+    $schema->addField('workflow_engine_submission', 'result_message', [
+      'type' => 'text', 'size' => 'normal', 'not null' => FALSE,
+    ]);
+  }
+  \Drupal::configFactory()->getEditable('workflow_engine.workflows')->delete();
+}

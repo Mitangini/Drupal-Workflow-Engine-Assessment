@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Cards for the published workflows.
+ *
+ * Variables:
+ * - items: list of name, meta, url.
+ * - empty: message shown when there are none.
+ */
+#}
+{% if items %}
+  <p class="wfe-intro">{{ 'Answer a few questions and get a result straight away. Each assessment takes only a couple of minutes.'|t }}</p>
+  <ul class="wfe-cards">
+    {% for item in items %}
+      <li class="wfe-card">
+        <h2>{{ item.name }}</h2>
+        <p class="wfe-card__meta">{{ item.meta }}</p>
+        <a class="wfe-card__cta" href="{{ item.url }}">{{ 'Start assessment'|t }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p class="wfe-empty-state">{{ empty }}</p>
+{% endif %}

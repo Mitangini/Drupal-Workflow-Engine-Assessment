@@ -1,0 +1,20 @@
+entity.workflow_engine_workflow.collection:
+  title: 'Workflows'
+  description: 'Build and manage assessment workflows.'
+  route_name: entity.workflow_engine_workflow.collection
+  parent: system.admin_structure
+  weight: 30
+
+workflow_engine.submissions:
+  title: 'Workflow submissions'
+  description: 'Review submitted answers and results.'
+  route_name: workflow_engine.submissions
+  parent: system.admin_reports
+  weight: 30
+
+workflow_engine.assessments_link:
+  title: 'Assessments'
+  description: 'Take an assessment.'
+  route_name: workflow_engine.frontend_list
+  menu_name: main
+  weight: 10

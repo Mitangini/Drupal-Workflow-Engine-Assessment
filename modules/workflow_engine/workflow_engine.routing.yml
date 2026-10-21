@@ -1,0 +1,53 @@
+workflow_engine.toggle:
+  path: '/admin/structure/workflow-engine/manage/{workflow_engine_workflow}/toggle'
+  defaults:
+    _controller: '\Drupal\workflow_engine\Controller\WorkflowToggleController::toggle'
+    _title: 'Publish or unpublish workflow'
+  requirements:
+    _permission: 'administer workflow engine'
+    _csrf_token: 'TRUE'
+  options:
+    parameters:
+      workflow_engine_workflow:
+        type: entity:workflow_engine_workflow
+
+workflow_engine.frontend_list:
+  path: '/assessments'
+  defaults:
+    _controller: '\Drupal\workflow_engine\Controller\AssessmentController::listing'
+    _title: 'Assessments'
+  requirements:
+    _access: 'TRUE'
+
+workflow_engine.run:
+  path: '/assessment/{slug}'
+  defaults:
+    _form: '\Drupal\workflow_engine\Form\WorkflowRunForm'
+    _title_callback: '\Drupal\workflow_engine\Controller\AssessmentController::title'
+  requirements:
+    _access: 'TRUE'
+
+workflow_engine.result:
+  path: '/assessment/{slug}/result'
+  defaults:
+    _controller: '\Drupal\workflow_engine\Controller\AssessmentController::result'
+    _title: 'Your result'
+  requirements:
+    _access: 'TRUE'
+
+workflow_engine.submissions:
+  path: '/admin/reports/workflow-engine/submissions'
+  defaults:
+    _controller: '\Drupal\workflow_engine\Controller\SubmissionController::listing'
+    _title: 'Workflow submissions'
+  requirements:
+    _permission: 'view workflow submissions'
+
+workflow_engine.submission:
+  path: '/admin/reports/workflow-engine/submissions/{submission_id}'
+  defaults:
+    _controller: '\Drupal\workflow_engine\Controller\SubmissionController::detail'
+    _title: 'Submission'
+  requirements:
+    _permission: 'view workflow submissions'
+    submission_id: '\d+'

@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * Admin view of one submission.
+ */
+#}
+<div class="wfe-submission">
+  <div class="wfe-submission__summary">
+    <h2>{{ workflow_name }}</h2>
+    <div><span class="wfe-risk wfe-risk--{{ level ?: 'none' }}">{{ result }}</span></div>
+    {% if message %}<p>{{ message }}</p>{% endif %}
+    <div class="wfe-submission__meta">
+      <span>{{ 'Reference'|t }}: #{{ reference }}</span>
+      <span>{{ 'Submitted'|t }}: {{ submitted }}</span>
+      <span>{{ 'By'|t }}: {{ user }}</span>
+    </div>
+  </div>
+  {% for group in groups %}
+    <section class="wfe-submission__group">
+      <h3>{{ group.title }}</h3>
+      <dl>
+        {% for item in group.items %}
+          <div><dt>{{ item.label }}</dt><dd>{{ item.value }}</dd></div>
+        {% else %}
+          <div><dt>{{ 'No answers in this step.'|t }}</dt><dd></dd></div>
+        {% endfor %}
+      </dl>
+    </section>
+  {% endfor %}
+  <p><a href="{{ back_url }}">← {{ 'Back to all submissions'|t }}</a></p>
+</div>

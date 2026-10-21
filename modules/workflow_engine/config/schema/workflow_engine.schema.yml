@@ -1,0 +1,86 @@
+workflow_engine.workflow.*:
+  type: config_entity
+  label: 'Assessment workflow'
+  mapping:
+    id:
+      type: string
+      label: 'Machine name'
+    label:
+      type: label
+      label: 'Name'
+    slug:
+      type: string
+      label: 'URL slug'
+    default_result:
+      type: label
+      label: 'Result when no rule matches'
+    steps:
+      type: sequence
+      label: 'Steps'
+      sequence:
+        type: mapping
+        label: 'Step'
+        mapping:
+          id:
+            type: string
+            label: 'Step ID'
+          title:
+            type: label
+            label: 'Title'
+          questions:
+            type: sequence
+            label: 'Questions'
+            sequence:
+              type: mapping
+              label: 'Question'
+              mapping:
+                id:
+                  type: string
+                  label: 'Question ID'
+                label:
+                  type: label
+                  label: 'Question text'
+                type:
+                  type: string
+                  label: 'Answer type'
+                required:
+                  type: boolean
+                  label: 'Required'
+                options:
+                  type: sequence
+                  label: 'Choices'
+                  sequence:
+                    type: string
+                    label: 'Choice'
+                condition:
+                  type: mapping
+                  label: 'Show only when'
+                  mapping:
+                    question:
+                      type: string
+                      label: 'Question ID'
+                    value:
+                      type: string
+                      label: 'Answer'
+    rules:
+      type: sequence
+      label: 'Result rules'
+      sequence:
+        type: mapping
+        label: 'Rule'
+        mapping:
+          id:
+            type: string
+            label: 'Rule ID'
+          question:
+            type: string
+            label: 'Question ID'
+          value:
+            type: string
+            label: 'Answer'
+          level:
+            type: string
+            label: 'Risk level'
+          message:
+            type: text
+            label: 'Message'

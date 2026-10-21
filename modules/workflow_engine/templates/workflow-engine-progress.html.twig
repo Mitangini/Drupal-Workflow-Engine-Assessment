@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * Step progress bar.
+ *
+ * Variables:
+ * - steps: list of title and state (done, current, todo).
+ */
+#}
+<ol class="wfe-progress" aria-label="{{ 'Progress'|t }}">
+  {% for step in steps %}
+    <li class="is-{{ step.state }}"{% if step.state == 'current' %} aria-current="step"{% endif %}>{{ step.title }}</li>
+  {% endfor %}
+</ol>

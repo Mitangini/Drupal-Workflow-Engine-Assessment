@@ -1,0 +1,17 @@
+admin:
+  css:
+    theme:
+      css/admin.css: {}
+
+builder:
+  js:
+    js/builder.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+    - workflow_engine/admin
+
+assessment:
+  css:
+    theme:
+      css/assessment.css: {}

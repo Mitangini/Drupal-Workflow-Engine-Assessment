@@ -1,0 +1,48 @@
+<?php
+
+/**
+ * @file
+ * Hooks for the Workflow Engine module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function workflow_engine_theme(): array {
+  return [
+    'workflow_engine_cards' => [
+      'variables' => ['items' => [], 'empty' => NULL],
+      'template' => 'workflow-engine-cards',
+    ],
+    'workflow_engine_progress' => [
+      'variables' => ['steps' => []],
+      'template' => 'workflow-engine-progress',
+    ],
+    'workflow_engine_result' => [
+      'variables' => [
+        'workflow_name' => NULL,
+        'level' => NULL,
+        'result' => NULL,
+        'message' => NULL,
+        'reference' => NULL,
+        'restart_url' => NULL,
+        'back_url' => NULL,
+      ],
+      'template' => 'workflow-engine-result',
+    ],
+    'workflow_engine_submission' => [
+      'variables' => [
+        'workflow_name' => NULL,
+        'level' => NULL,
+        'result' => NULL,
+        'message' => NULL,
+        'submitted' => NULL,
+        'user' => NULL,
+        'reference' => NULL,
+        'groups' => [],
+        'back_url' => NULL,
+      ],
+      'template' => 'workflow-engine-submission',
+    ],
+  ];
+}

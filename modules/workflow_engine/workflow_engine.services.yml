@@ -1,0 +1,3 @@
+services:
+  workflow_engine.logic:
+    class: Drupal\workflow_engine\WorkflowLogic

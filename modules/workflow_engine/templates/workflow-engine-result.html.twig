@@ -1,0 +1,18 @@
+{#
+/**
+ * @file
+ * The visitor's assessment result.
+ */
+#}
+<section class="wfe-result wfe-result--{{ level ?: 'none' }}">
+  <h2>{{ workflow_name }}</h2>
+  <p class="wfe-result__label">{{ result }}</p>
+  {% if message %}
+    <p>{{ message }}</p>
+  {% endif %}
+  <p class="wfe-result__ref">{{ 'Your reference number is #@id.'|t({'@id': reference}) }}</p>
+  <div class="wfe-result__links">
+    <a href="{{ restart_url }}">{{ 'Start again'|t }}</a>
+    <a href="{{ back_url }}">{{ 'All assessments'|t }}</a>
+  </div>
+</section>

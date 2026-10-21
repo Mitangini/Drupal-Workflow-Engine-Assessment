@@ -1,0 +1,9 @@
+administer workflow engine:
+  title: 'Administer workflows'
+  description: 'Create, edit, publish and delete assessment workflows.'
+  restrict access: true
+
+view workflow submissions:
+  title: 'View workflow submissions'
+  description: 'See submitted answers and assessment results.'
+  restrict access: true

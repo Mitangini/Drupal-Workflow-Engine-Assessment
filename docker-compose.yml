@@ -1,0 +1,24 @@
+services:
+  drupal:
+    image: drupal:10-apache
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    volumes:
+      - drupal_data:/var/www/html
+      - ./modules:/var/www/html/modules/custom
+
+  db:
+    image: mariadb:10.11
+    environment:
+      MARIADB_DATABASE: drupal
+      MARIADB_USER: drupal
+      MARIADB_PASSWORD: drupalpass
+      MARIADB_ROOT_PASSWORD: rootpass
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  drupal_data:
+  db_data:

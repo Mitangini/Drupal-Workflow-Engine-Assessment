@@ -1,0 +1,92 @@
+langcode: en
+status: true
+dependencies: {  }
+id: property_lease
+label: 'Property Lease Assessment'
+slug: property-lease
+default_result: 'Assessment complete'
+steps:
+  -
+    id: s1
+    title: 'Applicant Details'
+    questions:
+      -
+        id: q_full_name
+        label: 'Full Name'
+        type: text
+        required: true
+        options: {  }
+      -
+        id: q_email
+        label: 'Email Address'
+        type: email
+        required: true
+        options: {  }
+  -
+    id: s2
+    title: 'Property Details'
+    questions:
+      -
+        id: q_property_type
+        label: 'Property Type'
+        type: select
+        required: true
+        options:
+          - Residential
+          - Commercial
+      -
+        id: q_residential_use
+        label: 'Is the property intended for personal use or rental purposes?'
+        type: select
+        required: true
+        options:
+          - 'Personal Use'
+          - Rental
+        condition:
+          question: q_property_type
+          value: Residential
+      -
+        id: q_business_type
+        label: 'What type of business will operate at the property?'
+        type: text
+        required: false
+        options: {  }
+        condition:
+          question: q_property_type
+          value: Commercial
+      -
+        id: q_public_access
+        label: 'Is the property intended for public access?'
+        type: radio
+        required: false
+        options:
+          - 'Yes'
+          - 'No'
+        condition:
+          question: q_property_type
+          value: Commercial
+  -
+    id: s3
+    title: 'Lease Assessment'
+    questions:
+      -
+        id: q_signed_lease
+        label: 'Is a signed lease agreement available?'
+        type: radio
+        required: true
+        options:
+          - 'Yes'
+          - 'No'
+rules:
+  -
+    id: r1
+    question: q_signed_lease
+    value: 'No'
+    level: high
+    message: 'Without a signed lease agreement the arrangement is hard to enforce. Please obtain one before proceeding.'
+  -
+    id: r2
+    question: q_signed_lease
+    value: 'Yes'
+    level: low
+    message: 'A signed lease agreement is in place. No major concerns.'

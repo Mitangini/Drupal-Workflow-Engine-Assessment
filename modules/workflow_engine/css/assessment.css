@@ -1,0 +1,66 @@
+/* Workflow Engine – visitor-facing pages. */
+.wfe-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(18rem,1fr));gap:1.25rem;margin:1.5rem 0;padding:0;list-style:none}
+.wfe-card{display:flex;flex-direction:column;gap:.75rem;padding:1.5rem;border:1px solid #d9dde4;border-radius:14px;background:#fff;box-shadow:0 1px 3px rgba(20,40,80,.06)}
+.wfe-card h2{margin:0;font-size:1.25rem}
+.wfe-card__meta{margin:0;color:#5a6472;font-size:.9rem}
+.wfe-card__cta,.wfe-start{display:inline-block;align-self:flex-start;margin-top:auto;padding:.65rem 1.25rem;border-radius:10px;background:#0b57d0;color:#fff;text-decoration:none;font-weight:600}
+.wfe-card__cta:hover,.wfe-start:hover{background:#0a49ad;color:#fff}
+.wfe-empty-state{padding:2rem;border:2px dashed #cfd5df;border-radius:14px;text-align:center;color:#5a6472}
+
+.workflow-engine-run-form{max-width:44rem}
+.wfe-progress{display:flex;gap:.5rem;margin:0 0 1.5rem;padding:0;list-style:none;counter-reset:step}
+.wfe-progress li{flex:1;display:flex;flex-direction:column;gap:.4rem;font-size:.85rem;color:#6b7686}
+.wfe-progress li::before{content:"";height:6px;border-radius:3px;background:#d9dde4}
+.wfe-progress li.is-done::before{background:#2e9e57}
+.wfe-progress li.is-current::before{background:#0b57d0}
+.wfe-progress li.is-current{color:#0b3d91;font-weight:700}
+.wfe-step-head{margin:0 0 1rem}
+.wfe-step-head small{display:block;color:#6b7686;font-weight:500;font-size:.85rem;text-transform:uppercase;letter-spacing:.04em}
+.workflow-engine-run-form .form-actions{display:flex;gap:.75rem;margin-top:1.5rem}
+
+.wfe-result{max-width:40rem;padding:2rem;border-radius:16px;border:1px solid #d9dde4;border-top-width:8px;background:#fff}
+.wfe-result--low{border-top-color:#2e9e57}
+.wfe-result--medium{border-top-color:#e0a01a}
+.wfe-result--high{border-top-color:#d6392e}
+.wfe-result--none{border-top-color:#0b57d0}
+.wfe-result h2{margin:0 0 .25rem;font-size:1rem;color:#5a6472;font-weight:600}
+.wfe-result__label{margin:.25rem 0 .75rem;font-size:2rem;font-weight:800}
+.wfe-result--low .wfe-result__label{color:#14612c}
+.wfe-result--medium .wfe-result__label{color:#7a4b00}
+.wfe-result--high .wfe-result__label{color:#9b1c13}
+.wfe-result__ref{color:#6b7686;font-size:.85rem}
+.wfe-result__links{display:flex;gap:1rem;margin-top:1.25rem}
+
+/* ---- Presentable polish: works on Olivero and Claro-style themes ---- */
+.wfe-intro{max-width:40rem;margin:0 0 .5rem;color:#4b5565;font-size:1.1rem}
+.wfe-card{transition:box-shadow .15s,transform .15s}
+.wfe-card:hover{box-shadow:0 6px 18px rgba(20,40,80,.12);transform:translateY(-2px)}
+
+.workflow-engine-run-form{background:#fff;border:1px solid #d9dde4;border-radius:16px;padding:1.75rem 2rem;box-shadow:0 1px 3px rgba(20,40,80,.06);box-sizing:border-box}
+.workflow-engine-run-form .wfe-step-head{font-size:1.5rem;line-height:1.25}
+.workflow-engine-run-form .form-item{margin:0 0 1.35rem}
+.workflow-engine-run-form label,
+.workflow-engine-run-form legend,
+.workflow-engine-run-form .fieldset__label{font-weight:600;color:#172033}
+.workflow-engine-run-form input[type="text"],
+.workflow-engine-run-form input[type="email"],
+.workflow-engine-run-form textarea,
+.workflow-engine-run-form select{width:100%;max-width:100%;box-sizing:border-box;padding:.7rem .85rem;border:1px solid #b9c0cc;border-radius:8px;font-size:1rem;background:#fff}
+.workflow-engine-run-form input[type="text"]:focus,
+.workflow-engine-run-form input[type="email"]:focus,
+.workflow-engine-run-form textarea:focus,
+.workflow-engine-run-form select:focus{outline:3px solid #b8d0fb;border-color:#2e6bdc}
+.workflow-engine-run-form .form-radios .form-item{margin:.45rem 0}
+.workflow-engine-run-form .form-actions{margin-top:2rem;padding-top:1.25rem;border-top:1px solid #eceef2}
+.workflow-engine-run-form .form-actions .button,
+.workflow-engine-run-form .form-actions input[type="submit"]{min-width:7rem;padding:.8rem 1.6rem;border-radius:10px;font-weight:600;font-size:1rem;cursor:pointer;border:1px solid #0b57d0;background:#0b57d0;color:#fff}
+.workflow-engine-run-form .form-actions input[type="submit"]:hover{background:#0a49ad}
+.workflow-engine-run-form .form-actions input[name="back"]{background:#fff;color:#172033;border-color:#b9c0cc}
+.workflow-engine-run-form .form-actions input[name="back"]:hover{background:#f3f5f8}
+.wfe-result{box-shadow:0 1px 3px rgba(20,40,80,.06)}
+@media (max-width:640px){
+  .workflow-engine-run-form{padding:1.25rem}
+  .wfe-progress{font-size:.75rem}
+  .wfe-result{padding:1.5rem}
+  .wfe-result__label{font-size:1.6rem}
+}

@@ -1,0 +1,5 @@
+name: Workflow Engine
+type: module
+description: 'Build multi-step assessments from the admin UI: questions, conditional logic, risk results and submissions.'
+package: Custom
+core_version_requirement: ^10 || ^11
