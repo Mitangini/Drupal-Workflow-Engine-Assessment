@@ -4,25 +4,38 @@ A configuration-driven workflow engine built as a custom Drupal module (`modules
 Admins build multi-step assessments (max 3 steps) from the UI with conditional questions and risk rules.
 Visitors complete them and get a result; every submission is stored and can be reviewed by the admin.
 
+## Prerequisites
+- **Docker Desktop** installed and **running** (Windows / macOS), or Docker Engine with the Compose plugin (Linux).
+  Check with: `docker --version` and `docker compose version`
+- Port **8080** free on your machine (if not, change `"8080:80"` in `docker-compose.yml`).
+- Internet access for the first start (Docker downloads the Drupal and MariaDB images).
+- No PHP, Composer or database needs to be installed locally; everything runs in containers.
+
 ## Run it (Docker)
 
-Requirements: Docker Desktop (or Docker Engine with the Compose plugin).
-
-1. Extract the ZIP and open a terminal in the `drupal-assessment` folder.
-2. Start the containers:
+1. **Extract** the ZIP and open a terminal (PowerShell, Terminal or bash) **inside the `drupal-assessment` folder**, the one that contains `docker-compose.yml`.
+2. **Start the containers:**
    ```bash
    docker compose up -d
    ```
-3. Open **http://localhost:8080** and run the Drupal installer:
-   - Language: English, profile: **Standard**
+   The first run downloads the images and takes a few minutes. Check that both containers are running with `docker compose ps`.
+3. Open **http://localhost:8080**. The Drupal installer appears. Follow it:
+   - Language: English, then profile: **Standard**
    - Database type: **MySQL, MariaDB, Percona Server**
-   - Database name: `drupal`, username: `drupal`, password: `drupalpass`
-   - Open **Advanced options** and set host to `db`
-   - Create your admin account (any username/password) and finish.
-4. Enable the module: go to **Extend** (`/admin/modules`), search "Workflow Engine", tick it and click **Install**.
+   - Database name: `drupal`
+   - Database username: `drupal`
+   - Database password: `drupalpass`
+   - Open **Advanced options** and set **Host** to `db` (this is the database container name; do not leave it as localhost)
+   - Then create your admin account (any username and password you like) and finish. Installation takes about a minute.
+4. **Enable the module:** log in, go to **Extend** (`/admin/modules`), search for "Workflow Engine", tick it and click **Install**.
    The sample **Property Lease Assessment** workflow is created automatically.
-5. (Optional) Make the assessments page the home page: **Configuration → System → Basic site settings**
+5. (Optional) Show the assessments on the home page: **Configuration → System → Basic site settings**
    (`/admin/config/system/site-information`) → Default front page = `/assessments`.
+
+Troubleshooting:
+- Page not loading: run `docker compose ps` and make sure both `drupal` and `db` are "running"; give it a minute.
+- "Cannot connect to database": the Host under Advanced options must be `db`.
+- Start from scratch: `docker compose down -v` (this deletes all data), then repeat from step 2.
 
 ## Where to look
 | What | URL |
